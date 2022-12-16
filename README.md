@@ -4,9 +4,13 @@ This is an example app showing how to implement bottom navigation with nested ro
 
 ## Notes ##
 This example is built using GoRouter 5.2.4.
-
 Navigating bottom navbar screens with go router.
 Instead of using buildBody and currentIndex for routing, we’ll be using go router to navigate between screens.
+
+<p align="center">
+  <img alt='Screenshot 1' src="images/GoRouter.png" width="40%"/>
+</p>
+
 
 ## Why GoRouter? ##
 Reason being it’s now under the wing of official Flutter packages and not to mention its simplicity and good documentation.
