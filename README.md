@@ -14,6 +14,8 @@ Instead of using buildBody and currentIndex for routing, we’ll be using go rou
 
 <p align="center">
   <img alt='Screenshot 1' src="images/GoRouter.png" width="20%"/>
+  <img alt='Screenshot 2' src="images/GoRouter2.png" width="20%"/>
+  <img alt='Screenshot 3' src="images/GoRouter3.png" width="20%"/>
 </p>
 
 
