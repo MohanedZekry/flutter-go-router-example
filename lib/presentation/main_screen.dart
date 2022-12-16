@@ -3,6 +3,7 @@ import 'package:androidrouting/presentation/shared/named_nav_bar_item_widget.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 import '../core/utils/constants.dart';
 
 class MainScreen extends StatelessWidget {
@@ -38,16 +39,16 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-BlocConsumer<NavigationCubit, NavigationState> _buildBottomNavigation(mContext, tabs) =>
-    BlocConsumer<NavigationCubit, NavigationState>(
-      listener: (context, state) {
-        context.go(state.bottomNavItems);
-      },
+BlocBuilder<NavigationCubit, NavigationState> _buildBottomNavigation(mContext, List<NamedNavigationBarItemWidget>tabs) =>
+    BlocBuilder<NavigationCubit, NavigationState>(
       buildWhen: (previous, current) => previous.index != current.index,
       builder: (context, state) {
         return BottomNavigationBar(
           onTap: (value) {
-            context.read<NavigationCubit>().getNavBarItem(value);
+            if(state.index != value){
+              context.read<NavigationCubit>().getNavBarItem(value);
+              context.go(tabs[value].initialLocation);
+            }
           },
           showSelectedLabels: false,
           showUnselectedLabels: false,
