@@ -2,6 +2,11 @@
 
 This is an example app showing how to implement bottom navigation with nested routes using [GoRouter](https://pub.dev/packages/go_router) & [Cubit](https://pub.dev/packages/flutter_bloc)
 
+## Requirements ##
+- [Cubit](https://pub.dev/packages/flutter_bloc)
+- [GoRouter](https://pub.dev/packages/go_router)
+- [Equatable](https://pub.dev/packages/equatable)
+
 ## Notes ##
 This example is built using GoRouter 5.2.4.
 Navigating bottom navbar screens with go router.
