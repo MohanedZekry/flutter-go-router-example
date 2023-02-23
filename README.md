@@ -1,6 +1,6 @@
-# Flutter-GoRouter
+# flutter-go-router-example
 
-This is an example app showing how to implement bottom navigation with nested routes using [GoRouter](https://pub.dev/packages/go_router) & [Cubit](https://pub.dev/packages/flutter_bloc)
+This is an example app showing how to implement bottom navigation with nested routes using [go_router](https://pub.dev/packages/go_router) and [cubit](https://pub.dev/packages/flutter_bloc)
 
 ## Requirements ##
 - [Cubit](https://pub.dev/packages/flutter_bloc)
