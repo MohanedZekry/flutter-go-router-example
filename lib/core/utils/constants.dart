@@ -1,4 +1,4 @@
-import 'package:androidrouting/core/widget/not_found_page.dart';
+import 'package:androidrouting/app/routes/screens/not_found_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

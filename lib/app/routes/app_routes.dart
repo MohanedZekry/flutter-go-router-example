@@ -9,58 +9,66 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/utils/constants.dart';
+import 'screens/not_found_page.dart';
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
+class AppRouter {
 
-final goRouter = GoRouter(
-  initialLocation: Routes.homeNamedPage,
-  debugLogDiagnostics: true,
-  navigatorKey: _rootNavigatorKey,
-  routes: [
-    ShellRoute(
-      navigatorKey: _shellNavigatorKey,
-      builder: (context, state, child) {
-        return BlocProvider(
-          create: (context) => NavigationCubit(),
-          child: MainScreen(screen: child),
-        );
-      },
-      routes: [
-        GoRoute(
-          path: Routes.homeNamedPage,
-          pageBuilder: (context, state) =>
-          const NoTransitionPage(
-            child: HomeScreen(),
-          ),
-          routes: [
-            GoRoute(
-              path: Routes.homeDetailsNamedPage,
-              builder: (context, state) => const HomeDetailsScreen(),
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final _shellNavigatorKey = GlobalKey<NavigatorState>();
+
+  static final GoRouter _router = GoRouter(
+    initialLocation: Routes.homeNamedPage,
+    debugLogDiagnostics: true,
+    navigatorKey: _rootNavigatorKey,
+    routes: [
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return BlocProvider(
+            create: (context) => NavigationCubit(),
+            child: MainScreen(screen: child),
+          );
+        },
+        routes: [
+          GoRoute(
+            path: Routes.homeNamedPage,
+            pageBuilder: (context, state) =>
+            const NoTransitionPage(
+              child: HomeScreen(),
             ),
-          ],
-        ),
-        GoRoute(
-          path: Routes.profileNamedPage,
-          pageBuilder: (context, state) =>
-          const NoTransitionPage(
-            child: ProfileScreen(),
+            routes: [
+              GoRoute(
+                path: Routes.homeDetailsNamedPage,
+                builder: (context, state) => const HomeDetailsScreen(),
+              ),
+            ],
           ),
-          routes: [
-            GoRoute(
-              path: Routes.profileDetailsNamedPage,
-              builder: (context, state) => const ProfileDetailsScreen(),
+          GoRoute(
+            path: Routes.profileNamedPage,
+            pageBuilder: (context, state) =>
+            const NoTransitionPage(
+              child: ProfileScreen(),
             ),
-          ],
-        ),
-        GoRoute(
-          path: Routes.settingsNamedPage,
-          pageBuilder: (context, state) =>
-          const NoTransitionPage(
-            child: SettingScreen(),
+            routes: [
+              GoRoute(
+                path: Routes.profileDetailsNamedPage,
+                builder: (context, state) => const ProfileDetailsScreen(),
+              ),
+            ],
           ),
-        ),
-      ],
-    ),
-  ],
-);
+          GoRoute(
+            path: Routes.settingsNamedPage,
+            pageBuilder: (context, state) =>
+            const NoTransitionPage(
+              child: SettingScreen(),
+            ),
+          ),
+        ],
+      ),
+    ],
+    errorBuilder: (context, state) => const NotFoundScreen(),
+
+  );
+
+  static GoRouter get router => _router;
+}
