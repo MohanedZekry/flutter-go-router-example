@@ -7,9 +7,9 @@ This is an example app showing how to implement bottom navigation with nested ro
 - [GoRouter](https://pub.dev/packages/go_router)
 - [Equatable](https://pub.dev/packages/equatable)
 
-## Notes ##
-This example is built using GoRouter 5.2.4.
-Navigating bottom navbar screens with go router.
+## Intro ##
+This example is built using go_router 5.2.4.
+Navigating bottom navbar screens with go_router.
 Instead of using buildBody and currentIndex for routing, we’ll be using go router to navigate between screens.
 
 <p align="center">
