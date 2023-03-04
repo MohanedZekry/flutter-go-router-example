@@ -7,7 +7,7 @@ This is an example app showing how to implement bottom navigation with nested ro
 - [Requirements](#requirements)
 - [Intro](#intro)
 - [Screenshots](#screenshots)
-- [Why go_router?](#why go_router)
+- [Why go_router?](#why)
 
 ## Requirements
 - [cubit](https://pub.dev/packages/flutter_bloc)
@@ -27,7 +27,7 @@ Instead of using buildBody and currentIndex for routing, we’ll be using go rou
 </p>
 
 
-## Why go_router ?
+## Why go_router?
 Reason being it’s now under the wing of official Flutter packages and not to mention its simplicity and good documentation.
 
 For scenarios like this GoRouter has a new type of route called ShellRoute. ShellRoute is a route that displays a UI shell around the route. You’ll instinctively understand about shellRoute once you view this project.
