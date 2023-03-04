@@ -28,7 +28,7 @@ Instead of using buildBody and currentIndex for routing, we’ll be using go rou
 </p>
 
 ## Implementation
-To implement bottom navigation with go_router is no simple task in itself, but you can follow this instructions and it everything will be fine.
+To implement bottom navigation with go_router it's not simple or easy, but you can follow this instructions and everything will be just fine.
 
 First we need to configure our routing for navigation we will use `ShellRoute` it displays a UI shell around the route, Follow the implelemenation to understand it.
 
