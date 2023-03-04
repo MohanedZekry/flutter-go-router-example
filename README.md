@@ -7,6 +7,7 @@ This is an example app showing how to implement bottom navigation with nested ro
 - [Requirements](#requirements)
 - [Intro](#intro)
 - [Screenshots](#screenshots)
+- [Implementation](#implementation)
 - [Why?](#why)
 
 ## Requirements
@@ -26,6 +27,146 @@ Instead of using buildBody and currentIndex for routing, we’ll be using go rou
   <img alt='Screenshot 3' src="images/GoRouter3.png" width="20%"/>
 </p>
 
+## Implementation
+To implement bottom navigation with go_router is no simple task in itself, but you can follow this instructions and it everything will be fine.
+
+First we need to configure our routing for navigation we will use `ShellRoute` it displays a UI shell around the route, Follow the implelemenation to understand it.
+
+```dart
+class AppRouter {
+
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final _shellNavigatorKey = GlobalKey<NavigatorState>();
+
+  static final GoRouter _router = GoRouter(
+    initialLocation: Routes.homeNamedPage,
+    debugLogDiagnostics: true,
+    navigatorKey: _rootNavigatorKey,
+    routes: [
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return BlocProvider(
+            create: (context) => NavigationCubit(),
+            child: MainScreen(screen: child),
+          );
+        },
+        routes: [
+          GoRoute(
+            path: Routes.homeNamedPage,
+            pageBuilder: (context, state) =>
+            const NoTransitionPage(
+              child: HomeScreen(),
+            ),
+            routes: [
+              GoRoute(
+                path: Routes.homeDetailsNamedPage,
+                builder: (context, state) => const HomeDetailsScreen(),
+              ),
+            ],
+          ),
+          GoRoute(
+            path: Routes.profileNamedPage,
+            pageBuilder: (context, state) =>
+            const NoTransitionPage(
+              child: ProfileScreen(),
+            ),
+            routes: [
+              GoRoute(
+                path: Routes.profileDetailsNamedPage,
+                builder: (context, state) => const ProfileDetailsScreen(),
+              ),
+            ],
+          ),
+          GoRoute(
+            path: Routes.settingsNamedPage,
+            pageBuilder: (context, state) =>
+            const NoTransitionPage(
+              child: SettingScreen(),
+            ),
+          ),
+        ],
+      ),
+    ],
+    errorBuilder: (context, state) => const NotFoundScreen(),
+  );
+  
+  static GoRouter get router => _router;
+}
+```
+*Notes* `ShellRoute` has multiple routes whose returns a widget and that is child attribute to shellRoute builder.
+
+
+- after that we will implement our Cubit
+```dart
+class NavigationState extends Equatable {
+
+  final String bottomNavItems;
+  final int index;
+
+  const NavigationState({required this.bottomNavItems, required this.index});
+
+  @override
+  List<Object> get props => [bottomNavItems, index];
+}
+```
+
+- we building three screens in the bottom navigation
+```dart
+enum BottomNavItems {
+  home,
+  profile,
+  settings
+}
+```
+
+- our Cubit
+```dart
+part 'navigation_state.dart';
+
+class NavigationCubit extends Cubit<NavigationState> {
+  NavigationCubit() : super(const NavigationState(bottomNavItems: Routes.homeNamedPage, index: 0));
+
+  void getNavBarItem(int index) {
+    switch (index) {
+      case 0:
+        emit(const NavigationState(bottomNavItems: Routes.homeNamedPage,index:  0));
+        break;
+      case 1:
+        emit(const NavigationState(bottomNavItems: Routes.profileNamedPage,index:  1));
+        break;
+      case 2:
+        emit(const NavigationState(bottomNavItems: Routes.settingsNamedPage,index:  2));
+        break;
+    }
+  }
+}
+```
+
+- simple bottom navigation bar
+```dart
+BottomNavigationBar(
+          onTap: (value) {
+            if(state.index != value){
+              context.read<NavigationCubit>().getNavBarItem(value);
+              context.go(tabs[value].initialLocation);
+            }
+          },
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          elevation: 0,
+          backgroundColor: Colors.black,
+          unselectedItemColor: Colors.white,
+          selectedIconTheme: IconThemeData(
+            size: ((IconTheme
+                .of(mContext)
+                .size)! * 1.3),
+          ),
+          items: tabs,
+          currentIndex: state.index,
+          type: BottomNavigationBarType.fixed,
+        );
+```
 
 ## Why?
 Reason being it’s now under the wing of official Flutter packages and not to mention its simplicity and good documentation.
