@@ -1,5 +1,5 @@
 # go_router example
-The purpose of the go_router package is to use declarative routes to reduce complexity, regardless of the platform you're targeting (mobile, web, desktop), handle deep and dynamic linking from Android, iOS and the web, along with a number of other navigation-related scenarios, while still (hopefully) providing an easy-to-use developer experience.
+The purpose of the go_router package is that it is A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens and reduce complexity, regardless of the platform you're targeting (mobile, web, desktop), You can define URL patterns, navigate using a URL, handle deep links, and a number of other navigation-related scenarios.
 
 This is an example app showing how to implement bottom navigation with nested routes using [go_router](https://pub.dev/packages/go_router) and [cubit](https://pub.dev/packages/flutter_bloc)
 
