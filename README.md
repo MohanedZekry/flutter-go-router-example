@@ -7,7 +7,7 @@ This is an example app showing how to implement bottom navigation with nested ro
 - [Requirements](#requirements)
 - [Intro](#intro)
 - [Screenshots](#screenshots)
-- [Why go_router?](#why go_router)
+- [Whygo_router?](#whygo_router)
 
 ## Requirements
 - [cubit](https://pub.dev/packages/flutter_bloc)
